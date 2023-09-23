@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  {% extends 'base.html' %} {% block title %} Rock Paper and Scissors {%
+  endblock %} {% block head %} {{super()}}
+  <script defer src="{{ url_for('static', filename='rps.js')}}"></script>
+  {% endblock %} {% block header %}Ultimate Rock Paper and Scissors{% endblock
+  %} {% block subheader %}The most ultimate form of this ultimate game{%
+  endblock %} {% block content %}
+  <p class="output" id="rpsOutput">Let us begin</p>
+  <div id="rpsBtnPlacement">
+    <button>Rock</button>
+    <button>Paper</button>
+    <button>Scissors</button>
+  </div>
+  {% endblock %}
+</html>

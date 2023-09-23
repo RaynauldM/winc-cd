@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block head %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css')}}"
+    />
+    {% endblock %}
+  </head>
+  <body>
+    {% if request.endpoint != 'home_page' %}
+    <a href="{{url_for('home_page')}}">Back to homepage</a>
+    {% endif %}
+    <h1 id="header">{% block header %}{% endblock %}</h1>
+
+    <p id="subheader">{% block subheader %}{% endblock %}</p>
+    {% block content %}{% endblock %}
+    <button id="resetBtn" class="invisible">Reset</button>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  {% extends 'base.html' %} {% block title %} Guess the number {% endblock %} {%
+  block head %} {{super()}} {% endblock %} {% block header %}Guess the number!{%
+  endblock %} {% block subheader %}{% endblock %} {% block content %}
+  <script
+    defer
+    src="{{ url_for('static', filename='guessNumber.js')}}"
+  ></script>
+  <div class="gameScreen" id="guessNumberScreen">
+    <p class="output" id="guessNumberOutput">Pick a number to start</p>
+    <div id="guessBtnPlacement">
+      {% for i in range(1,10) %}
+      <button class="guessNumberBtns" id="btn{{i}}">{{i}}</button>
+      {% endfor %}
+    </div>
+  </div>
+  {% endblock %}
+</html>

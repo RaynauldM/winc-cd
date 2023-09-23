@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  {% extends 'base.html' %} {% block title %} home {% endblock %} {% block head
+  %} {{super()}} {% endblock %} {% block header %}The Silly-Games{% endblock %}
+  {% block subheader %}a silly game collection by Raynauld Minkema{% endblock %}
+  {% block content %}
+  <div id="btnPlacementIndex">
+    {% for html_file in html_files %}
+    <a href="{{ url_for(html_file)}}"
+      >{{ html_file.replace('_', ' ').replace('page', '') }}</a
+    >
+    {% endfor %}
+  </div>
+  {% endblock %}
+</html>
