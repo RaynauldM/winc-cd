@@ -12,7 +12,10 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
-
+  
+    - name: Install dependencies
+      run: |
+        pip install pytest
 
     - name: Run Tests
       run: pytest # Adjust this based on how you run tests in your project

@@ -23,6 +23,7 @@ jobs:
     - name: Deploy to VPS
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SSH_SSERVER: ${{ secrets.SSH_SERVER }}
 
       run: |
         echo "$SSH_PRIVATE_KEY" > private_key.pem
