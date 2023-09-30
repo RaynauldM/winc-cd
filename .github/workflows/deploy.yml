@@ -20,6 +20,13 @@ jobs:
     - name: Run Tests
       run: pytest # Adjust this based on how you run tests in your project
 
+
+    - name: Configure known hosts
+      run: |
+        mkdir -p ~/.ssh
+        touch ~/.ssh/known_hosts
+        ssh-keyscan -H 159.89.17.77 >> ~/.ssh/known_hosts
+
     - name: Deploy to VPS
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
