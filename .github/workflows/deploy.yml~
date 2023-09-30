@@ -21,12 +21,7 @@ jobs:
       run: pytest # Adjust this based on how you run tests in your project
 
     - name: Deploy to VPS
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        SSH_SSERVER: ${{ secrets.SSH_SERVER }}
 
       run: |
-        echo "$SSH_PRIVATE_KEY" > private_key.pem
-        chmod 600 private_key.pem
-        ssh -i private_key.pem root@"$SSH_SERVER" 'cd /home/sillyGames && git pull'
-        ssh -i private_key.pem root@"$SSH_SERVER" 'systemctl restart sillyGames'
+        ssh -i root@159.89.17.77 'cd /home/sillyGames && git pull'
+        ssh -i root@159.89.17.77 'systemctl restart sillyGames'
