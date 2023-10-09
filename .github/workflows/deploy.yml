@@ -3,37 +3,36 @@ name: Continuous Deployment
 on:
   push:
     branches:
-        - main
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-  
-    - name: Install dependencies
-      run: |
-        pip install pytest
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Run Tests
-      run: pytest # Adjust this based on how you run tests in your project
+      - name: Install dependencies
+        run: |
+          pip install pytest
 
+      - name: Run tests
+        run: pytest
 
-    - name: Configure known hosts
-      run: |
-        mkdir -p ~/.ssh
-        touch ~/.ssh/known_hosts
-        ssh-keyscan -H 159.89.17.77 >> ~/.ssh/known_hosts
+      - name: Configure known hosts
+        run: |
+          mkdir -p ~/.ssh
+          touch ~/.ssh/known_hosts
+          ssh-keyscan -H 159.89.17.77 >> ~/.ssh/known_hosts
 
-    - name: Deploy to VPS
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Deploy to VPS
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      run: |
-        echo "$SSH_PRIVATE_KEY" > private_key.pem
-        chmod 600 private_key.pem
-        ssh-keygen -p -N "" -m PEM -f private_key.pem 
-        ssh -i private_key.pem root@159.89.17.77 'cd /home/sillyGames && git pull'
-        ssh -i private_key.pem root@159.89.17.77 'systemctl restart sillyGames'
+        run: |
+          echo "$SSH_PRIVATE_KEY" > private_key.pem
+          chmod 600 private_key.pem
+          ssh-keygen -p -N "" -m PEM -f private_key.pem 
+          ssh -i private_key.pem root@159.89.17.77 'cd /home/sillyGames && git pull'
+          ssh -i private_key.pem root@159.89.17.77 'systemctl restart sillyGames'
