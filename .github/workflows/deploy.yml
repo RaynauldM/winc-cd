@@ -34,5 +34,5 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > private_key.pem
           chmod 600 private_key.pem
           ssh-keygen -p -N "" -m PEM -f private_key.pem 
-          ssh -i private_key.pem root@159.89.17.77 'cd /home/sillyGames && sudo git pull'
+          ssh -i private_key.pem root@159.89.17.77 'cd /home/sillyGames && git pull --rebase origin main'
           ssh -i private_key.pem root@159.89.17.77 'systemctl restart sillyGames'
